@@ -1,6 +1,6 @@
 
 run:
-	cabal configure -v3
+	cabal configure
 	cabal run
 
 check:
@@ -12,7 +12,7 @@ check:
 Objective-C: main
 	./main
 
-main: main.m actor.m
+main: main.m cbits/objc_actor.m
 	gcc -ObjC  -framework Cocoa  -o ./main  $^
 
 # # # # # # # # # # # # # # # # # # 

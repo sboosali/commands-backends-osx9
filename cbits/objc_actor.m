@@ -21,7 +21,7 @@ ProcessSerialNumber currentApplicationPSN() {
   return psn;
 }
 
-void pressKey(CGKeyCode key, CGEventFlags modifiers) {
+void pressKey(CGEventFlags modifiers, CGKeyCode key) {
 
     // events to press a key
     CGEventRef event1 = CGEventCreateKeyboardEvent(NULL, key, true);  // key down

@@ -52,6 +52,7 @@ library
  includes:         cbits/objc_actor.h
  install-includes: cbits/objc_actor.h
 
+ cc-options: -ObjC
  -- cc-options: -fobjc-arc
  -- ld-options: -optl-ObjC
  frameworks: Cocoa

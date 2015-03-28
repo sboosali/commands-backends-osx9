@@ -2,6 +2,7 @@
 module Commands.Backends.OSX.Bindings where
 import Commands.Backends.OSX.Types
 import Commands.Backends.OSX.Bindings.Raw
+import Commands.Backends.OSX.Marshall
 
 import Foreign.C.String (peekCString) 
 

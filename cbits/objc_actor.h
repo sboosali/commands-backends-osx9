@@ -5,6 +5,6 @@
 
 
 const char * currentApplicationPath();
-void pressKey(CGKeyCode key, CGEventFlags modifiers);
+void pressKey(CGEventFlags modifiers, CGKeyCode key);
 
 #endif
