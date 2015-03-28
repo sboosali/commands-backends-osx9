@@ -1,0 +1,90 @@
+name: commands-backends-osx9
+version: 0.0.0
+
+synopsis: Control your Mac by voice (an OSX Backend for the commands package).
+category: Voice Control, Speech Recognition, Parsing, Natural Language Processing, Apple
+
+description:
+ Objective-C bindings to press keys and click the mouse.
+
+author:     Sam Boosalis
+maintainer: samboosalis@gmail.com
+
+homepage:    https://github.com/sboosali/commands-backends-osx9/blob/master/README.md
+bug-reports: https://github.com/sboosali/commands-backends-osx9/issues
+
+copyright:    Copyright (C) 2014 Sam M. Boosalis
+license:      MIT
+license-file: LICENSE
+
+build-type:    Simple
+cabal-version: >=1.10
+stability:     experimental
+tested-with:   GHC == 7.8.2
+
+extra-source-files:
+ README.md
+
+data-files:
+
+source-repository head
+ type:     git
+ location: https://github.com/sboosali/commands-backends-osx9
+
+
+
+library
+ if os(darwin)
+   buildable: True
+ else
+   buildable: False
+
+ hs-source-dirs:  sources
+ exposed-modules:
+  Commands.Backends.OSX.Types
+  Commands.Backends.OSX.Bindings
+  Commands.Backends.OSX.Bindings.Raw
+  Commands.Backends.OSX.Constants
+  Commands.Backends.OSX.Marshall
+
+ c-sources:        cbits/objc_actor.m
+ include-dirs:     cbits
+ includes:         cbits/objc_actor.h
+ install-includes: cbits/objc_actor.h
+
+ -- cc-options: -fobjc-arc
+ -- ld-options: -optl-ObjC
+ frameworks: Cocoa
+
+ default-language: Haskell2010
+ ghc-options:
+  -Wall
+  -fno-warn-name-shadowing
+
+ build-depends:
+    base ==4.7.*
+  , template-haskell
+
+  , bv  ==0.3.*
+
+
+
+executable example
+ main-is:        Main.hs
+ hs-source-dirs: executables
+
+ default-language: Haskell2010
+ ghc-options:
+  -Wall
+  -fno-warn-name-shadowing
+  -threaded
+  "-with-rtsopts=-N"
+--  -O2
+
+ build-depends:
+    base ==4.7.*
+  , commands-backends-osx9
+
+
+
+-- $ time cabal install --only-dependencies
