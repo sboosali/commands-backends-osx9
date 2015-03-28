@@ -1,3 +1,12 @@
+
+run:
+	cabal configure -v3
+	cabal run
+
+check:
+	cabal build --ghc-options="-fforce-recomp -fno-code"
+
+
 # # # # # # # # # # # # # # # # # # 
 
 Objective-C: main
@@ -8,11 +17,10 @@ main: main.m actor.m
 
 # # # # # # # # # # # # # # # # # # 
 
-default: Objective-C
+default: check
 
 clean:
 	rm -f main
 
-.PHONY: Objective-C main default clean
+.PHONY: default clean
 
-# # # # # # # # # # # # # # # # # # 
