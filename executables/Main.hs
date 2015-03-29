@@ -4,25 +4,32 @@ import Commands.Backends.OSX.Bindings
 
 import Control.Monad (replicateM_)
 import Control.Concurrent (threadDelay)
+import Data.Monoid                    ((<>))
 
 
 main = do
  -- testChrome
- currentApplicationPath >>= print
+
  delay 30
- pressKey $ Press [Command, Shift] BKey
+ pressKey $ KeyPress [Command, Shift] BKey
  delay 1000
- pressKey $ Press [Command] DownArrowKey
+ pressKey $ KeyPress [Command] DownArrowKey
+
+ app <- currentApplicationPath
+ setClipboard app
+ s <- getClipboard
+ openURL $ "https://www.google.com/search?q=" <> s
+
 
 markWord = do
- pressKey $ Press [Option       ] LeftArrowKey
- pressKey $ Press [Option, Shift] RightArrowKey
+ pressKey $ KeyPress [Option       ] LeftArrowKey
+ pressKey $ KeyPress [Option, Shift] RightArrowKey
 
 backWord = do
- pressKey $ Press [Option] LeftArrowKey
+ pressKey $ KeyPress [Option] LeftArrowKey
 
 forWord = do
- pressKey $ Press [Option] RightArrowKey
+ pressKey $ KeyPress [Option] RightArrowKey
 
 -- 1,000,000 µs is 1s
 delay i = threadDelay $ i*1000

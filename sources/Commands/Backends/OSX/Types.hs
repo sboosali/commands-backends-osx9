@@ -33,34 +33,22 @@ type CGEventFlags  = CULLong
 -- -}
 -- type CGMouseButton =
 
-{- | the core type sent to "mouseClick"
+-- data MouseClick = MouseClick [Modifier] Positive MouseButton
+--  deriving (Show,Eq,Ord)
 
+-- data MouseButton = LeftButton | MiddleButton | RightButton
+--  deriving (Show,Eq,Ord,Enum)
 
--}
-data MouseClick = Click [Modifier] Positive MouseButton
- deriving (Show,Eq,Ord)
+-- type Positive = Int
 
-{- | the core type sent to "keyPress"
+{- |
 
 @Press [Command, Shift] AKey@ is easy to read, and
 @Press []@ is natural to partially apply
 
 -}
-data KeyPress = Press [Modifier] Key
+data KeyPress = KeyPress [Modifier] Key
  deriving (Show,Eq,Ord)
-
--- | a (pseudo)-refinement type.
-newtype Positive = Positive { getPositive :: Integer }
- deriving (Show,Eq,Ord)
-
--- | smart constructor for 'Positive'. like a @Prism@.
-newPositive :: Integer -> Either Integer Positive
-newPositive i = if i >= 1
- then Right $ Positive i
- else Left  $ i
-
-data MouseButton = LeftButton | MiddleButton | RightButton
- deriving (Show,Eq,Ord,Enum)
 
 {- | modifier keys are keys that can be "held".
 

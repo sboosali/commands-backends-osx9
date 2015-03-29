@@ -7,6 +7,9 @@ import Foreign.C.Types (CUShort (..), CULLong (..)) -- https://ghc.haskell.org/t
 -- import Data.Word (Word32)
 
 
+foreign import ccall safe "objc_actor.h currentApplicationPath" objc_currentApplicationPath
+ :: IO CString
+
 foreign import ccall safe "objc_actor.h pressKey"               objc_pressKey
  :: CGEventFlags
  -> CGKeyCode
@@ -20,5 +23,13 @@ foreign import ccall safe "objc_actor.h pressKey"               objc_pressKey
 --  -> Word32
 --  -> IO ()
 
-foreign import ccall safe "objc_actor.h currentApplicationPath" objc_currentApplicationPath
+foreign import ccall safe "objc_actor.h getClipboard"           objc_getClipboard
  :: IO CString
+
+foreign import ccall safe "objc_actor.h setClipboard"           objc_setClipboard
+ :: CString
+ -> IO ()
+
+foreign import ccall safe "objc_actor.h openURL"                objc_openURL
+ :: CString
+ -> IO ()

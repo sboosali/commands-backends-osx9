@@ -1,3 +1,6 @@
+# # # # # # # # # # # # # # # # # # 
+
+default: check
 
 run:
 	cabal configure
@@ -16,8 +19,6 @@ main: main.m cbits/objc_actor.m
 	gcc -ObjC  -framework Cocoa  -o ./main  $^
 
 # # # # # # # # # # # # # # # # # # 
-
-default: check
 
 clean:
 	rm -f main
